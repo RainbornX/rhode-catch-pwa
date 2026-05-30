@@ -1,0 +1,650 @@
+:root {
+  color-scheme: light;
+  --bg: #f3f7f5;
+  --panel: #ffffff;
+  --ink: #13211f;
+  --muted: #64716e;
+  --line: #d7e1dd;
+  --teal: #0f766e;
+  --teal-soft: #dff4ef;
+  --coral: #c2410c;
+  --gold: #a16207;
+  --blue: #2563eb;
+  --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(15, 118, 110, 0.12), transparent 280px),
+    var(--bg);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.app-shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 0 18px;
+}
+
+.brand-block h1,
+.hero-copy h2,
+.section-heading h3 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.brand-block h1 {
+  font-size: clamp(28px, 7vw, 44px);
+  line-height: 1;
+}
+
+.eyebrow {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.top-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: stretch;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.16), rgba(37, 99, 235, 0.08)),
+    var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.hero-meta span {
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: var(--teal);
+  background: var(--teal-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero-copy h2 {
+  margin-bottom: 8px;
+  font-size: clamp(28px, 8vw, 46px);
+  line-height: 1.02;
+}
+
+.hero-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.score-box {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  width: 88px;
+  min-height: 100%;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--teal);
+}
+
+.score-box strong {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.score-box span {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.range-panel,
+.content-section,
+.map-panel,
+.today-grid {
+  margin-top: 14px;
+}
+
+.range-panel {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.segment {
+  min-height: 42px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 700;
+}
+
+.segment.active {
+  color: #fff;
+  background: var(--teal);
+}
+
+.status-line {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.today-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metric-card,
+.forecast-card,
+.species-card,
+.spot-card,
+.tide-card,
+.content-section {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.metric-card {
+  padding: 12px;
+}
+
+.metric-card span,
+.forecast-meta,
+.species-card span,
+.spot-card span,
+.tide-card span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+.map-panel {
+  overflow: hidden;
+  height: min(58vw, 320px);
+  min-height: 210px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.map-panel iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.content-section {
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.section-heading h3 {
+  margin-top: 2px;
+  font-size: 20px;
+}
+
+.forecast-list,
+.weekly-schedule-list,
+.species-list,
+.schedule-list,
+.spot-list,
+.tide-list {
+  display: grid;
+  gap: 10px;
+}
+
+.forecast-card,
+.week-card,
+.species-card,
+.schedule-card,
+.spot-card,
+.tide-card {
+  padding: 12px;
+}
+
+.week-card summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+.week-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.week-card summary strong,
+.week-card summary small {
+  display: block;
+}
+
+.week-card summary strong {
+  font-size: 15px;
+}
+
+.week-card summary small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.week-card summary b {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding-inline: 9px;
+  border-radius: 999px;
+  color: var(--teal);
+  background: var(--teal-soft);
+  font-size: 12px;
+}
+
+.week-fish-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.week-fish-row {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f5faf8;
+}
+
+.week-fish-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.week-fish-head h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.week-fish-times {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.week-fish-times div {
+  min-width: 0;
+}
+
+.week-fish-times span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.week-fish-times strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.forecast-card {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.day-block strong {
+  display: block;
+  font-size: 16px;
+}
+
+.day-block span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.forecast-main h4,
+.species-card h4,
+.schedule-card h4,
+.spot-card h4 {
+  margin: 0 0 5px;
+  font-size: 15px;
+}
+
+.forecast-main p,
+.species-card p,
+.schedule-card p,
+.spot-card p,
+.tide-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.forecast-time {
+  margin-top: 4px;
+  color: var(--teal) !important;
+  font-weight: 700;
+}
+
+.time-window {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--teal);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.mini-score {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--teal);
+  font-weight: 800;
+}
+
+.mini-score.mid,
+.score-box.mid {
+  background: var(--gold);
+}
+
+.mini-score.low,
+.score-box.low {
+  background: var(--coral);
+}
+
+.species-card,
+.spot-card,
+.tide-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.schedule-card {
+  display: grid;
+  gap: 10px;
+}
+
+.schedule-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.schedule-score {
+  display: grid;
+  place-items: center;
+  min-width: 42px;
+  height: 34px;
+  padding-inline: 10px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--teal);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.schedule-score.mid {
+  background: var(--gold);
+}
+
+.schedule-score.low {
+  background: var(--coral);
+}
+
+.schedule-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.schedule-details div {
+  min-width: 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f5faf8;
+}
+
+.schedule-details span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.schedule-details strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.spot-card {
+  width: 100%;
+  text-align: left;
+}
+
+.spot-card.active {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
+  color: var(--teal);
+  background: var(--teal-soft);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 20px 0 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.install-button {
+  position: fixed;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  min-width: 76px;
+  min-height: 44px;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--ink);
+  box-shadow: var(--shadow);
+  font-weight: 800;
+}
+
+dialog {
+  width: min(340px, calc(100% - 32px));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+dialog::backdrop {
+  background: rgba(19, 33, 31, 0.28);
+}
+
+dialog h3 {
+  margin: 0 0 8px;
+}
+
+dialog p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.primary-button {
+  width: 100%;
+  min-height: 44px;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--teal);
+  font-weight: 800;
+}
+
+@media (max-width: 680px) {
+  .app-shell {
+    padding-inline: 12px;
+  }
+
+  .hero-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .score-box {
+    width: 100%;
+    min-height: 78px;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    column-gap: 8px;
+  }
+
+  .today-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .forecast-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .forecast-card .mini-score {
+    grid-column: 1 / -1;
+    justify-self: start;
+    width: auto;
+    min-width: 64px;
+    height: 32px;
+    padding-inline: 12px;
+    border-radius: 999px;
+  }
+
+  .schedule-details {
+    grid-template-columns: 1fr;
+  }
+
+  .week-fish-times {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Rhode Catch" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>Rhode Catch</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./assets/icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="eyebrow">Rhode Island</span>
+          <h1>Rhode Catch</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="locateButton" type="button" aria-label="使用当前位置" title="使用当前位置">
+            <span aria-hidden="true">◎</span>
+          </button>
+          <button class="icon-button" id="refreshButton" type="button" aria-label="刷新" title="刷新">
+            <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-panel">
+          <div class="hero-copy">
+            <div class="hero-meta">
+              <span id="spotTown">Warwick</span>
+              <span id="spotType">海湾</span>
+            </div>
+            <h2 id="spotName">Conimicut Point</h2>
+            <p id="spotNotes">正在读取钓点和天气。</p>
+          </div>
+          <div class="score-box" id="scoreBox">
+            <strong id="scoreValue">--</strong>
+            <span>评分</span>
+          </div>
+        </section>
+
+        <section class="range-panel">
+          <div class="segmented" role="tablist" aria-label="选择时间范围">
+            <button class="segment active" id="thisWeekButton" type="button" aria-selected="true">未来 7 天</button>
+            <button class="segment" id="nextWeekButton" type="button" aria-selected="false">下周</button>
+          </div>
+          <div class="status-line" id="statusLine">准备读取天气和潮汐</div>
+        </section>
+
+        <section class="today-grid" id="todayMetrics" aria-label="今日天气摘要"></section>
+
+        <section class="map-panel" aria-label="钓点地图">
+          <iframe
+            id="spotMap"
+            title="钓点地图"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-71.95%2C41.22%2C-71.05%2C42.02&amp;layer=mapnik&amp;marker=41.7169%2C-71.3458"
+          ></iframe>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Bite Window</span>
+              <h3 id="forecastTitle">未来 7 天钓况</h3>
+            </div>
+          </div>
+          <div class="forecast-list" id="forecastList"></div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">7-Day Schedule</span>
+              <h3 id="weeklyScheduleTitle">未来 7 天时间表</h3>
+            </div>
+          </div>
+          <div class="weekly-schedule-list" id="weeklySchedule"></div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Species Match</span>
+              <h3>适合目标鱼</h3>
+            </div>
+          </div>
+          <div class="species-list" id="speciesList"></div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Today Schedule</span>
+              <h3>今日各鱼种时间表</h3>
+            </div>
+          </div>
+          <div class="schedule-list" id="speciesSchedule"></div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Spot Finder</span>
+              <h3>附近钓点</h3>
+            </div>
+          </div>
+          <div class="spot-list" id="spotList"></div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Tide</span>
+              <h3 id="tideTitle">潮汐窗口</h3>
+            </div>
+          </div>
+          <div class="tide-list" id="tideList"></div>
+        </section>
+      </main>
+
+      <footer>
+        <span>Weather: Open-Meteo</span>
+        <span>Tide: NOAA CO-OPS</span>
+        <a href="https://dem.ri.gov/natural-resources-bureau/marine-fisheries" target="_blank" rel="noreferrer">RI DEM</a>
+      </footer>
+    </div>
+
+    <dialog id="installDialog">
+      <form method="dialog">
+        <h3>安装到 iPhone 主屏幕</h3>
+        <p>在 Safari 里打开后，点分享按钮，然后选择“添加到主屏幕”。</p>
+        <button class="primary-button" value="close">知道了</button>
+      </form>
+    </dialog>
+
+    <button class="install-button" id="installButton" type="button">安装</button>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

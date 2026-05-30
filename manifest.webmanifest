@@ -1,0 +1,19 @@
+{
+  "name": "Rhode Catch Planner",
+  "short_name": "Rhode Catch",
+  "description": "Rhode Island fishing weather, tide windows, nearby spots, and species recommendations.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f7f5",
+  "theme_color": "#0f766e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
