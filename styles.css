@@ -101,6 +101,39 @@ a {
   box-shadow: var(--shadow);
 }
 
+.control-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.control-field {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow);
+}
+
+.control-field span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.control-field select {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  padding: 0 8px;
+}
+
 .hero-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -169,6 +202,31 @@ a {
 .map-panel,
 .today-grid {
   margin-top: 14px;
+}
+
+.score-rules {
+  display: grid;
+  gap: 8px;
+}
+
+.score-rule {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f5faf8;
+}
+
+.score-rule strong {
+  color: var(--teal);
+  font-size: 13px;
+}
+
+.score-rule span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
 }
 
 .range-panel {
@@ -610,6 +668,10 @@ dialog p {
     padding-inline: 12px;
   }
 
+  .control-panel {
+    grid-template-columns: 1fr;
+  }
+
   .hero-panel {
     grid-template-columns: 1fr;
   }
@@ -624,6 +686,10 @@ dialog p {
 
   .today-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .score-rule {
+    grid-template-columns: 1fr;
   }
 
   .forecast-card {
