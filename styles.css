@@ -118,20 +118,97 @@ a {
   box-shadow: var(--shadow);
 }
 
-.control-field span {
+.control-field span,
+.spot-picker summary span {
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
 }
 
-.control-field select {
+.language-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #eef6f3;
+}
+
+.language-tab {
+  min-height: 36px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 800;
+}
+
+.language-tab.active {
+  color: #fff;
+  background: var(--teal);
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.18);
+}
+
+.spot-picker {
+  position: relative;
+}
+
+.spot-picker summary {
+  display: grid;
+  gap: 6px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.spot-picker summary::-webkit-details-marker {
+  display: none;
+}
+
+.spot-picker summary strong {
+  display: block;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spot-picker-list {
+  display: grid;
+  gap: 8px;
+  max-height: 320px;
+  overflow: auto;
+  padding-top: 10px;
+}
+
+.spot-picker-option {
   width: 100%;
-  min-height: 38px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  color: var(--ink);
   background: #fff;
-  padding: 0 8px;
+  padding: 10px;
+  text-align: left;
+}
+
+.spot-picker-option strong,
+.spot-picker-option span {
+  display: block;
+}
+
+.spot-picker-option strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.spot-picker-option span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.spot-picker-option.active {
+  border-color: var(--teal);
+  background: var(--teal-soft);
 }
 
 .hero-panel {

@@ -586,9 +586,10 @@ function cacheElements() {
     "thisWeekButton",
     "nextWeekButton",
     "languageLabel",
-    "languageSelect",
     "spotSelectLabel",
-    "spotSelect",
+    "spotPicker",
+    "spotPickerSummary",
+    "spotPickerList",
     "statusLine",
     "spotTown",
     "spotType",
@@ -616,6 +617,7 @@ function cacheElements() {
   ].forEach((id) => {
     elements[id] = document.getElementById(id);
   });
+  elements.languageButtons = Array.from(document.querySelectorAll("[data-language]"));
 }
 
 function bindEvents() {
@@ -624,21 +626,19 @@ function bindEvents() {
   elements.installButton.addEventListener("click", () => elements.installDialog.showModal());
   elements.thisWeekButton.addEventListener("click", () => setRange(0));
   elements.nextWeekButton.addEventListener("click", () => setRange(7));
-  elements.languageSelect.addEventListener("change", () => {
-    state.language = elements.languageSelect.value;
-    localStorage.setItem("rhodeCatchLanguage", state.language);
-    applyLanguage();
-    renderSpotControls();
-    renderSpotShell();
-    renderForecasts();
-    renderSpots();
-    if (state.lastUpdatedAt) {
-      setStatus(updatedStatus(state.usedFallback ? t("fallbackStatus") : t("updatedStatus")));
-    }
-  });
-  elements.spotSelect.addEventListener("change", () => {
-    state.selectedSpotId = elements.spotSelect.value;
-    loadForecast();
+  elements.languageButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.language = button.dataset.language;
+      localStorage.setItem("rhodeCatchLanguage", state.language);
+      applyLanguage();
+      renderSpotControls();
+      renderSpotShell();
+      renderForecasts();
+      renderSpots();
+      if (state.lastUpdatedAt) {
+        setStatus(updatedStatus(state.usedFallback ? t("fallbackStatus") : t("updatedStatus")));
+      }
+    });
   });
   document.addEventListener("visibilitychange", refreshIfStale);
 }
@@ -651,7 +651,11 @@ function registerServiceWorker() {
 
 function applyLanguage() {
   document.documentElement.lang = state.language === "zh" ? "zh-CN" : state.language;
-  elements.languageSelect.value = state.language;
+  elements.languageButtons.forEach((button) => {
+    const isActive = button.dataset.language === state.language;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
   elements.languageLabel.textContent = t("language");
   elements.spotSelectLabel.textContent = t("spot");
   elements.locateButton.setAttribute("aria-label", t("useLocation"));
@@ -690,11 +694,22 @@ function renderScoreRules() {
 }
 
 function renderSpotControls() {
-  elements.spotSelect.innerHTML = sortedSpots().map((spot) => `
-    <option value="${spot.id}" ${spot.id === state.selectedSpotId ? "selected" : ""}>
-      ${spot.name} · ${spot.town}
-    </option>
+  const spots = sortedSpots();
+  const current = selectedSpot();
+  elements.spotPickerSummary.textContent = `${current.name} · ${current.town}`;
+  elements.spotPickerList.innerHTML = spots.map((spot) => `
+    <button class="spot-picker-option ${spot.id === state.selectedSpotId ? "active" : ""}" type="button" data-spot-id="${spot.id}">
+      <strong>${spot.name}</strong>
+      <span>${spot.town} · ${waterLabel(spot)} · ${distanceText(spot)}</span>
+    </button>
   `).join("");
+  elements.spotPickerList.querySelectorAll("[data-spot-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.selectedSpotId = button.dataset.spotId;
+      elements.spotPicker.open = false;
+      loadForecast();
+    });
+  });
 }
 
 function selectedSpot() {

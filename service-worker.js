@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "rhode-catch-pwa-v8";
+const CACHE_NAME = "rhode-catch-pwa-v9";
 const SHELL_FILES = [
   "./",
   "./index.html",

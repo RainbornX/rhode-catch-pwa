@@ -30,18 +30,21 @@
       </header>
 
       <section class="control-panel" aria-label="应用设置">
-        <label class="control-field">
+        <div class="control-field">
           <span id="languageLabel">语言</span>
-          <select id="languageSelect">
-            <option value="zh">中文</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-          </select>
-        </label>
-        <label class="control-field">
-          <span id="spotSelectLabel">调整地点</span>
-          <select id="spotSelect"></select>
-        </label>
+          <div class="language-tabs" role="group" aria-label="选择语言">
+            <button class="language-tab active" type="button" data-language="zh">中</button>
+            <button class="language-tab" type="button" data-language="en">EN</button>
+            <button class="language-tab" type="button" data-language="es">ES</button>
+          </div>
+        </div>
+        <details class="control-field spot-picker" id="spotPicker">
+          <summary>
+            <span id="spotSelectLabel">调整地点</span>
+            <strong id="spotPickerSummary">Colt State Park Fishing Pier</strong>
+          </summary>
+          <div class="spot-picker-list" id="spotPickerList"></div>
+        </details>
       </section>
 
       <main>
